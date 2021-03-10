@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import ReactMapGL from 'react-map-gl';
 import './App.css';
+import MapStyles from './components/MapStyles/MapStyles'
 
-function App() {
+const App = ()  => {
+
+  const [viewport, setViewport] = useState({
+    latitude: 20,
+    longitude: -20,
+    width: "100vw",
+    height: "100vh",
+    zoom: 2
+  
+  })
+
+  const [styleID, setStyleID] = useState("mapbox://styles/mapbox/light-v10")
+
+   const changeStyleHandler = (newStyleID) =>
+   {
+     setStyleID(newStyleID);
+   }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ReactMapGL {...viewport} 
+    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} 
+    onViewportChange={viewport => {setViewport(viewport)}}
+    mapStyle={styleID}
+    >
+      <MapStyles changeStyle={changeStyleHandler}/>
+
+    </ReactMapGL>
   );
 }
 
