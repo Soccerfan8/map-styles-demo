@@ -228,7 +228,10 @@
         initGeocoder(pointMapChart);
 
         addStyleButtons(pointMapChart);
-
+        
+        /*
+        * Function responsible for creating the buttons and appending them to the point chart
+        */
         function addStyleButtons(chart) {
           chart = $('<div class="styles-board"><button id="switchStyleBasicBtn" type="submit"><img src="./images/basic-preview.png" alt="basic"></img></button><button id="switchStyleBrightBtn"><img src="./images/bright-preview.png" alt="bright"></img></button><button id="switchStyleDarkBtn"><img src="./images/dark-preview.png" alt="dark"></img></button><button id="switchStyleSatelliteBtn"><img src="./images/satellite-preview.png" alt="satellite"></img></button></div>').appendTo($("#chart1-example"));
         }
